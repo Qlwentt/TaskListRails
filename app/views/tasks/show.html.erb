@@ -1,2 +1,23 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<h1><%= @my_task.title%></h1>
+
+<table> 
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Completed At</th>
+			<th>Done?</th>
+		</tr>
+		<tr>
+			<td><%= @my_task.title%></td>
+			<td><%= @my_task.description%></td>
+			<td><%= @my_task.completed_at.to_s %></td>
+			<td>
+				<% unless @my_task.completed_at==nil %>
+					 &#9989
+				<% else %>
+					&#10060
+				<% end %>
+			</td>
+		</tr>
+</table>
+

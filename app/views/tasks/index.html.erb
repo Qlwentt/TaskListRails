@@ -1,2 +1,20 @@
-<h1>Tasks#index</h1>
-<p>Find me in app/views/tasks/index.html.erb</p>
+<h1>Your Task List</h1>
+	<article>
+			<table> 
+				<tr>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Completed At</th>
+				</tr>
+					<% @tasks.each do |task| %>
+						<tr>
+							<td><%= link_to(task.title, show_path(task.id))%></td>
+							<td><%= task.description%></td>
+							<td><%= task.completed_at.to_s %></td>
+						</tr>
+					<% end %>
+			</table>
+	</article>
+	<section>
+		<%= button_to("Add a New Task", {action: "new" }, method: :get)%>
+	<section>
