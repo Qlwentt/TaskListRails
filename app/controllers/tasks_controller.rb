@@ -48,6 +48,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
+  	Task.find(params[:id].to_i).destroy
+  	redirect_to  '/'
   end
 
   #only need this method because not using database yet

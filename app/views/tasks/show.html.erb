@@ -10,7 +10,7 @@
 		<tr>
 			<td><%= @my_task.title%></td>
 			<td><%= @my_task.description%></td>
-			<td><%= @my_task.completed_at.to_s %></td>
+			<td><%= @my_task.completed_at.strftime("%m/%d/%Y %H:%M") unless @my_task.completed_at ==nil %></td>
 			<td>
 				<% unless @my_task.completed_at==nil %>
 					 &#9989
@@ -20,4 +20,7 @@
 			</td>
 		</tr>
 </table>
+<section>
+	<%= button_to("delete", {action: "destroy", id: @my_task.id}, method: :delete, data: {confirm:  "are you sure?"})%>
+</section>
 

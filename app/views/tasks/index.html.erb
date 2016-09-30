@@ -10,7 +10,8 @@
 						<tr>
 							<td><%= link_to(task.title, show_path(task.id))%></td>
 							<td><%= task.description%></td>
-							<td><%= task.completed_at.to_s %></td>
+							<td><%= task.completed_at.strftime("%m/%d/%Y %H:%M") unless task.completed_at ==nil%></td>
+							<td><%= button_to("delete", {action: "destroy", id: task.id}, method: :delete, data: {confirm:  "are you sure?"})%></td>
 						</tr>
 					<% end %>
 			</table>
