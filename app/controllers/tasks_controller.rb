@@ -18,6 +18,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+  	@my_task= Task.find(params[:id].to_i)
   end
 
   def show
@@ -44,7 +45,25 @@ class TasksController < ApplicationController
 
   end
 
+  def mark_complete
+  	@my_task= Task.find(params[:id].to_i)
+
+  	unless (@my_task.completed_at != nil) || (@my_task.completed?)
+  		@my_task.completed_at = Time.now 
+  		@my_task.save
+  	end
+  	
+  	redirect_to '/'
+  end
+
   def update
+  	@my_task= Task.find(params[:id].to_i)
+    @my_task.title = params[:task][:title]
+    @my_task.description = params[:task][:description]
+    @my_task.completed_at = params[:task][:completed_at]
+    @my_task.save
+
+  	redirect_to '/'
   end
 
   def destroy

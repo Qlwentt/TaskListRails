@@ -5,12 +5,20 @@
 					<th>Title</th>
 					<th>Description</th>
 					<th>Completed At</th>
+					<th></th>
 				</tr>
 					<% @tasks.each do |task| %>
 						<tr>
 							<td><%= link_to(task.title, show_path(task.id))%></td>
 							<td><%= task.description%></td>
 							<td><%= task.completed_at.strftime("%m/%d/%Y %H:%M") unless task.completed_at ==nil%></td>
+							<td><% if task.completed?  %>
+									&#9745
+								<% else %>
+									<%= button_to("mark completed", {action: "mark_complete", id: task.id}, method: :patch)%>
+								<% end %>
+							</td>
+							<td><%= button_to("edit", {action: "edit", id: task.id}, method: :get, data: {})%></td>
 							<td><%= button_to("delete", {action: "destroy", id: task.id}, method: :delete, data: {confirm:  "are you sure?"})%></td>
 						</tr>
 					<% end %>
@@ -18,4 +26,9 @@
 	</article>
 	<section>
 		<%= button_to("Add a New Task", {action: "new" }, method: :get)%>
+	<section>
+	<section>
+		<p>You've done <%=Task.all.length-Task.uncompleted_tasks.length %> things!</p>
+		<p>Next try to <%= Task.uncompleted_tasks.empty? == true ? "add another task" : Task.uncompleted_tasks.sample.title.downcase %>!
+		</p>
 	<section>

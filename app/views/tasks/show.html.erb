@@ -1,3 +1,5 @@
+
+
 <h1><%= @my_task.title%></h1>
 
 <table> 
@@ -11,11 +13,11 @@
 			<td><%= @my_task.title%></td>
 			<td><%= @my_task.description%></td>
 			<td><%= @my_task.completed_at.strftime("%m/%d/%Y %H:%M") unless @my_task.completed_at ==nil %></td>
-			<td>
-				<% unless @my_task.completed_at==nil %>
-					 &#9989
+			<td><% if @my_task.completed?  %>
+					&#9745
 				<% else %>
-					&#10060
+					<%= button_to("mark completed", {action: "mark_complete", id: @my_task.id}, method: :patch)%>
+								<% end %>
 				<% end %>
 			</td>
 		</tr>
