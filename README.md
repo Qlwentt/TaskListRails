@@ -1,3 +1,21 @@
+### Task List Reflection 
+
+This was my first rails project. A lot of it was very similiar to live code exercises in class, so it wasn't the most fun thing ever. I did like adding little touches at the end, though.
+
+I had a hard time getting my completed task feature to work. I was dead-set on having a checkbox, but had a hard time getting the checkbox to actually change an a variable in my model. In the end I found out I couldn't just make variables in my model without having them in the database (from what I understand) and I had to use a method instead.
+
+My chair pair did more CSS than I did (I only did a line or two). I still am working on harnessing my creativity in regards to designing the frontend of websites. 
+
+
+
+
+
+
+
+
+
+
+
 # Task List Rails ✅
 We are going to build a Task List in Rails. This web application will enable us to keep track of list of tasks with the functionality to add, edit and remove tasks from a list.
 
