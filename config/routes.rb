@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  
   root to: "tasks#index"
 
+  get "/auth/:provider/callback" =>  "sessions#create"
+  
   get 'tasks/index' => 'tasks#index', as: 'index'
 
   get 'tasks/new' => 'tasks#new', as: 'new'

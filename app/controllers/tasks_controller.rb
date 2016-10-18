@@ -5,6 +5,7 @@ class TasksController < ApplicationController
 
   def new
   	@my_task=Task.new
+    @path="create"
   end
 
   def create
@@ -19,6 +20,7 @@ class TasksController < ApplicationController
 
   def edit
   	@my_task= Task.find(params[:id].to_i)
+    @path="update"
   end
 
   def show
