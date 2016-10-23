@@ -1,11 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  description: MyText
+adas_task:
+  title: Write code
+  description: fortran code
+  user: :ada
   completed_at: 2016-09-29 15:18:35
 
-two:
-  title: MyString
-  description: MyText
-  completed_at: 2016-09-29 15:18:35
+quais_task:
+  title: Go home
+  description: do it 
+  user: :quai
