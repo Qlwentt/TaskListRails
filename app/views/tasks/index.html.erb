@@ -7,6 +7,7 @@
 					<th>Completed At</th>
 					<th></th>
 				</tr>
+					<% if @tasks %>
 					<% @tasks.each do |task| %>
 						<tr>
 							<td><%= link_to(task.title, show_path(task.id))%></td>
@@ -22,13 +23,16 @@
 							<td><%= button_to("delete", {action: "destroy", id: task.id}, method: :delete, data: {confirm:  "are you sure?"})%></td>
 						</tr>
 					<% end %>
+				<%end%>
 			</table>
 	</article>
 	<section>
 		<%= button_to("Add a New Task", {action: "new" }, method: :get)%>
 	<section>
+	<%if @tasks%>
 	<section>
-		<p>You've done <%=Task.all.length-Task.uncompleted_tasks.length %> things!</p>
-		<p>Next try to <%= Task.uncompleted_tasks.empty? == true ? "add another task" : Task.uncompleted_tasks.sample.title.downcase %>!
+		<p>You've done <%= @tasks.length-Task.uncompleted_tasks(@this_user_id).length %> things!</p>
+		<p>Next try to <%= Task.uncompleted_tasks(@this_user_id).empty? == true ? "add a task" : Task.uncompleted_tasks(@this_user_id).sample.title.downcase %>!
 		</p>
 	<section>
+	<%end%>

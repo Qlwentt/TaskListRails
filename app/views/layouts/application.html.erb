@@ -7,8 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+<header>
+	<% if session[:user_id] == nil %>
+		<%=link_to "Log In", "/auth/github" %>
+		<h1> Welcome!</h1>
+		<p>Log in via github above ^...</p>
+	<% else %>
+  		<%= link_to "logout", sessions_destroy_path,:method => :delete %>
+		</header>
+		<%= yield %>
+	<%end%>
 
 </body>
 </html>

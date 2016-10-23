@@ -1,31 +1,38 @@
 class TasksController < ApplicationController
   def index
-  	@tasks=Task.all
+    @this_user_id=session[:user_id]
+  	@tasks=Task.where(user_id: session[:user_id])
+    puts @tasks.inspect
   end
 
   def new
   	@my_task=Task.new
+    #@my_task.user_id=session[:user_id]
     @path="create"
   end
 
   def create
+    @this_user_id=session[:user_id]
+    return redirect_to '/' unless @this_user_id
   	@params = params
     @my_task=Task.new
     @my_task.title = params[:task][:title]
     @my_task.description = params[:task][:description]
     @my_task.completed_at = params[:task][:completed_at]
+    @my_task.user_id= @this_user_id
     @my_task.save
     redirect_to  '/'
   end
 
   def edit
+    @this_user_id=session[:user_id]
   	@my_task= Task.find(params[:id].to_i)
     @path="update"
   end
 
   def show
   	
-  	@tasks=Task.all
+    @tasks=Task.where(user_id: session[:user_id])
 
     @my_task= Task.find(params[:id].to_i)
   	# @my_task = nil
@@ -59,10 +66,12 @@ class TasksController < ApplicationController
   end
 
   def update
+    @this_user_id=session[:user_id]
   	@my_task= Task.find(params[:id].to_i)
     @my_task.title = params[:task][:title]
     @my_task.description = params[:task][:description]
     @my_task.completed_at = params[:task][:completed_at]
+    @my_task.user_id= @this_user_id
     @my_task.save
 
   	redirect_to '/'
@@ -73,5 +82,4 @@ class TasksController < ApplicationController
   	redirect_to  '/'
   end
 
-  #only need this method because not using database yet
 end
