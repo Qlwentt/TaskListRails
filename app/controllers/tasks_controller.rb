@@ -31,8 +31,10 @@ class TasksController < ApplicationController
   end
 
   def show
-  	
-    @tasks=Task.where(user_id: session[:user_id])
+  	@this_user_id=session[:user_id]
+    return redirect_to '/' unless @this_user_id
+
+    @tasks=Task.where(user_id: @this_user_id)
 
     @my_task= Task.find(params[:id].to_i)
   	# @my_task = nil
@@ -80,6 +82,6 @@ class TasksController < ApplicationController
   def destroy
   	Task.find(params[:id].to_i).destroy
   	redirect_to  '/'
-  end
+  end 
 
 end
